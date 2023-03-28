@@ -10,7 +10,7 @@ public class DonutHole extends MenuItem {
     private HoleFlavor holeFlavor;
 
     public DonutHole(){
-        this.holeFlavor = HoleFlavor.PLAIN;
+        this.holeFlavor = HoleFlavor.GLAZED;
     }
 
     public DonutHole(HoleFlavor holeFlavor){

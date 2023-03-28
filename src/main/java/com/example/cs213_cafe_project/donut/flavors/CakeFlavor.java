@@ -1,22 +1,49 @@
+/**
+ * package for all enum classes of donut flavors
+ */
 package com.example.cs213_cafe_project.donut.flavors;
 
+/**
+ * Implementation for enum class CakeFlavor which consists of flavors for cake donuts.
+ * Each enum object contains an attribute "flavor": String
+ * @author Nikhil Agarwal, Hyeon Oh
+ */
 public enum CakeFlavor {
 
+    /**
+     * Plain vanilla cake
+     */
     PLAIN("Plain Vanilla"),
-    CHOCOLATE("Chocolate"),
-    STRAWBERRY("Strawberry"),
-    BLUEBERRY("Blueberry"),
-    LEMON("Lemon"),
-    VELVET("Red Velvet"),
-    CARROT("Carrot"),
-    PUMPKIN("Pumpkin");
 
+    /**
+     * Chocolate cake
+     */
+    CHOCOLATE("Chocolate"),
+
+    /**
+     * Strawberry short cake
+     */
+    STRAWBERRY("Strawberry");
+
+    /**
+     * String description of the flavor
+     */
     private final String flavor;
 
+    /**
+     * Constructor for enum Object
+     * Cannot be instantiated outside of this class.
+     * Must init object above to use outside of class.
+     * @param flavor String description of the flavor
+     */
     CakeFlavor (String flavor){
         this.flavor = flavor;
     }
 
+    /**
+     * getter method to get the "flavor" attribute of enum object
+     * @return String description of the flavor
+     */
     public String getFlavor(){
         return flavor;
     }
