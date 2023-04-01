@@ -10,7 +10,6 @@
 <?import javafx.scene.layout.RowConstraints?>
 <?import javafx.scene.text.Font?>
 
-
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" style="-fx-background-color: lavender;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <top>
       <Label text="Rutgers Cafe" textFill="#c626cc" BorderPane.alignment="CENTER">
@@ -34,7 +33,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@CafeImages/donutsFrontPage.jpg" />
+                        <Image url="@donutsFrontPage.jpg" />
                      </image>
                   </ImageView>
                </graphic>
@@ -43,7 +42,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@CafeImages/coffeeFrontPage.jpg" />
+                        <Image url="@coffeeFrontPage.jpg" />
                      </image>
                   </ImageView>
                </graphic>
@@ -52,7 +51,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@CafeImages/shoppingBagIcon.jpg" />
+                        <Image url="@shoppingBagIcon.jpg" />
                      </image>
                   </ImageView>
                </graphic>
@@ -61,7 +60,7 @@
                <graphic>
                   <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@CafeImages/storeOrdersIcon.png" />
+                        <Image url="@storeOrdersIcon.png" />
                      </image>
                   </ImageView>
                </graphic>
