@@ -74,6 +74,32 @@ public class MainController {
         }
     }
 
+    @FXML
+    protected void displayBasketView() {
+        Stage basketView = new Stage();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasket.fxml"));
+
+            Scene scene = new Scene(loader.load(), 600, 600);
+            basketView.setScene(scene);
+            basketView.show();
+            OrderBasketController basketViewController = loader.getController();
+            /*
+              The statement below is to pass the reference of the MainController object
+              to the OrderBasketController object so the OrderBasketController can call the
+              public methods in the MainController.
+             */
+            basketViewController.setMainController(this);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading orderBasket.fxml.");
+            alert.setContentText("Couldn't load orderBasket.fxml.");
+            alert.showAndWait();
+        }
+    }
+
     /**
      * The controller can use this getter method to read the private data.
      * @return
