@@ -100,6 +100,32 @@ public class MainController {
         }
     }
 
+    @FXML
+    protected void displayStoreView() {
+        Stage storeOrderView = new Stage();
+
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrders.fxml"));
+
+            Scene scene = new Scene(loader.load(), 600, 600);
+            storeOrderView.setScene(scene);
+            storeOrderView.show();
+            StoreOrderController storeOrderController = loader.getController();
+            /*
+              The statement below is to pass the reference of the MainController object
+              to the StoreOrderController object so the StoreOrderController can call the
+              public methods in the MainController.
+             */
+            storeOrderController.setMainController(this);
+        } catch (IOException e) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("ERROR");
+            alert.setHeaderText("Loading storeOrders.fxml.");
+            alert.setContentText("Couldn't load storeOrders.fxml.");
+            alert.showAndWait();
+        }
+    }
+
     /**
      * The controller can use this getter method to read the private data.
      * @return
