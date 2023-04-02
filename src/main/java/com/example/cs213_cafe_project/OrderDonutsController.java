@@ -42,12 +42,31 @@ public class OrderDonutsController {
         donutType.setItems(donutList);
         donutAmount = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12");
         numDonuts.setItems(donutAmount);
-        //donutFlavorList = FXCollections.observableArrayList("test", "test2");
-        //donutFlavorType.setItems(donutFlavorList);
 
     }
 
+    //donutFlavorList = FXCollections.observableArrayList("test", "test2");
+    //donutFlavorType.setItems(donutFlavorList);
+    @FXML
+    public void displaySelected(ActionEvent event) {
+        String selected = donutType.getSelectionModel().getSelectedItem();
+        if(selected.equals("cake donuts"))
+        {
+            donutFlavorList = FXCollections.observableArrayList("cinnamon sugar", "old fashion", "blueberry");
+            donutFlavorType.setItems(donutFlavorList);
+        }
+        else if(selected.equals("yeast donuts"))
+        {
+            donutFlavorList = FXCollections.observableArrayList("jelly", "glazed", "lemon filled", "chocolate frosted", "strawberry frosted", "sugar");
+            donutFlavorType.setItems(donutFlavorList);
+        }
+        else if(selected.equals("donut holes"))
+        {
+            donutFlavorList = FXCollections.observableArrayList("powdered", "italian cherry", "cinnamon");
+            donutFlavorType.setItems(donutFlavorList);
+        }
 
+    }
 
 
 

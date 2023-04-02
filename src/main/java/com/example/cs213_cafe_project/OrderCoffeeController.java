@@ -35,8 +35,9 @@ public class OrderCoffeeController {
         coffeeSize.setItems(coffeeSizeList);
         coffeeAmount = FXCollections.observableArrayList("1","2","3","4","5");
         numCoffee.setItems(coffeeAmount);
-        //donutFlavorList = FXCollections.observableArrayList("test", "test2");
-        //donutFlavorType.setItems(donutFlavorList);
+
 
     }
+
+
 }
