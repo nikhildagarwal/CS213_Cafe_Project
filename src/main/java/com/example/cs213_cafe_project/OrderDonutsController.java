@@ -7,7 +7,9 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.control.ListView;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
@@ -16,6 +18,12 @@ import java.util.ArrayList;
 public class OrderDonutsController {
 
     private MainController mainController;
+    @FXML
+    private ImageView donutImage;
+    private Image yeastDonutImage = new Image("file:src/main/resources/com/example/cs213_cafe_project/yeast donut.jpg");
+    private Image cakeDonutImage = new Image("file:src/main/resources/com/example/cs213_cafe_project/cake donut.jpg");
+    private Image donutHoleImage = new Image("file:src/main/resources/com/example/cs213_cafe_project/donut holes.jpg");
+
     private ObservableList<String> donutList;
     private ObservableList<String> donutFlavorList;
 
@@ -54,16 +62,19 @@ public class OrderDonutsController {
         {
             donutFlavorList = FXCollections.observableArrayList("cinnamon sugar", "old fashion", "blueberry");
             donutFlavorType.setItems(donutFlavorList);
+            donutImage.setImage(cakeDonutImage);
         }
         else if(selected.equals("yeast donuts"))
         {
             donutFlavorList = FXCollections.observableArrayList("jelly", "glazed", "lemon filled", "chocolate frosted", "strawberry frosted", "sugar");
             donutFlavorType.setItems(donutFlavorList);
+            donutImage.setImage(yeastDonutImage);
         }
         else if(selected.equals("donut holes"))
         {
             donutFlavorList = FXCollections.observableArrayList("powdered", "italian cherry", "cinnamon");
             donutFlavorType.setItems(donutFlavorList);
+            donutImage.setImage(donutHoleImage);
         }
 
     }
