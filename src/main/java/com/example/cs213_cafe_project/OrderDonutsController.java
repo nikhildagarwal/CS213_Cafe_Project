@@ -16,9 +16,39 @@ import java.util.ArrayList;
 public class OrderDonutsController {
 
     private MainController mainController;
+    private ObservableList<String> donutList;
+    private ObservableList<String> donutFlavorList;
+
+    private ObservableList<String> donutAmount;
+    @FXML
+    private ComboBox<String> numDonuts;
+
+
+    @FXML
+    private ComboBox<String> donutType;
+
+    @FXML
+    private ListView<String> donutFlavorType;
 
     //Get the reference to the MainController object
     public void setMainController (MainController controller){
         mainController = controller;
     }
+
+
+    public void initialize()
+    {
+        donutList = FXCollections.observableArrayList("yeast donuts", "cake donuts", "donut holes");
+        donutType.setItems(donutList);
+        donutAmount = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12");
+        numDonuts.setItems(donutAmount);
+        //donutFlavorList = FXCollections.observableArrayList("test", "test2");
+        //donutFlavorType.setItems(donutFlavorList);
+
+    }
+
+
+
+
+
 }
