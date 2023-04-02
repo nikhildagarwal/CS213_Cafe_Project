@@ -15,7 +15,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213_cafe_project.OrderCoffeeController">
    <top>
       <Label text="Order Coffee" BorderPane.alignment="CENTER">
          <font>
@@ -29,12 +29,12 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <ComboBox prefWidth="150.0" promptText="Size:">
+            <ComboBox fx:id="coffeeSize" prefWidth="150.0" promptText="Size:">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox prefWidth="150.0" promptText="Amount:">
+            <ComboBox fx:id="numCoffee" prefWidth="150.0" promptText="Amount:">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
