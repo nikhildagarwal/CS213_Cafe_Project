@@ -65,15 +65,17 @@
          <children>
             <ImageView fx:id="donutImage" fitHeight="1.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="17.0" prefWidth="188.0" text="Donut Basket Sub-Total:" />
-            <TextField editable="false" prefHeight="25.0" prefWidth="194.0">
+            <TextField editable="false" prefHeight="25.0" prefWidth="194.0" fx:id="basketTotal">
                <VBox.margin>
                   <Insets right="15.0" />
-               </VBox.margin></TextField>
-            <ListView prefHeight="200.0" prefWidth="200.0">
+               </VBox.margin>
+            </TextField>
+            <ListView prefHeight="200.0" prefWidth="200.0" fx:id="basketItemsListView" onMouseClicked="#enableRemoveBox">
                <VBox.margin>
                   <Insets right="15.0" top="10.0" />
-               </VBox.margin></ListView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Remove" fx:id="removeButton" disable="true">
+               </VBox.margin>
+            </ListView>
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Remove" fx:id="removeButton" disable="true" onAction="#removeButtonClicked">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

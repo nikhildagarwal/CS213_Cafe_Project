@@ -66,7 +66,7 @@ public class DonutHole extends MenuItem {
      */
     @Override
     public String toString(){
-        return "Donut Hole - Flavor: "+holeFlavor.getFlavor();
+        return "Donut Hole - "+holeFlavor.getFlavor();
     }
 
     /**

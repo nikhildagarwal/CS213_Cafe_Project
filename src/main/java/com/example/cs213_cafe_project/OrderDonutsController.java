@@ -1,8 +1,8 @@
 package com.example.cs213_cafe_project;
 
-import com.example.cs213_cafe_project.donut.CakeDonut;
-import com.example.cs213_cafe_project.donut.DonutHole;
-import com.example.cs213_cafe_project.donut.YeastDonut;
+import com.example.cs213_cafe_project.data.*;
+import com.example.cs213_cafe_project.data.MenuItem;
+import com.example.cs213_cafe_project.donut.*;
 import com.example.cs213_cafe_project.donut.flavors.CakeFlavor;
 import com.example.cs213_cafe_project.donut.flavors.HoleFlavor;
 import com.example.cs213_cafe_project.donut.flavors.YeastFlavor;
@@ -18,6 +18,8 @@ import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+
 public class OrderDonutsController {
 
     private MainController mainController;
@@ -30,15 +32,16 @@ public class OrderDonutsController {
     private ObservableList<String> donutList;
     private ObservableList<String> donutFlavorList;
     private ObservableList<String> donutAmount;
+    private ObservableList<BasketItem> basketItems = FXCollections.observableArrayList();
 
     @FXML
     private ComboBox<String> numDonuts;
-
     @FXML
     private ComboBox<String> donutType;
-
     @FXML
     private ListView<String> donutFlavorType;
+    @FXML
+    private ListView<BasketItem> basketItemsListView;
 
     //Get the reference to the MainController object
     public void setMainController (MainController controller){
@@ -83,13 +86,63 @@ public class OrderDonutsController {
     }
 
     @FXML
+    private Button removeButton;
+    @FXML
     private Button addToBasketButton;
     @FXML
     private TextField selectionTotal;
+    @FXML
+    private TextField basketTotal;
+
+    @FXML
+    public void removeButtonClicked(){
+        removeButton.disableProperty().set(true);
+        BasketItem selectedItem = basketItemsListView.getSelectionModel().getSelectedItem();
+        basketItems.remove(selectedItem);
+        setBasketPrice();
+    }
+
+    @FXML
+    private void setBasketPrice(){
+        double total = 0;
+        for(int i =0;i<basketItems.size();i++){
+            BasketItem currItem = basketItems.get(i);
+            total += (currItem.getMenuItem().itemPrice() * currItem.getQuantity());
+        }
+        String money = "$"+ (Math.round(total * 100.0) / 100.0);
+        basketTotal.setText(format(money));
+        basketTotal.focusTraversableProperty().set(false);
+    }
 
     @FXML
     public void addToBasket(){
-        
+        String dType = donutType.valueProperty().getValue();
+        int quantity = Integer.parseInt(numDonuts.valueProperty().getValue());
+        String dfType = donutFlavorType.getSelectionModel().getSelectedItem();
+        switch(dType){
+            case "Yeast Donuts":
+                YeastFlavor yeastFlavor = getYeastFlavor(dfType);
+                YeastDonut yeastDonut = new YeastDonut(yeastFlavor);
+                BasketItem basketItemYeast = new BasketItem(yeastDonut,quantity);
+                basketItems.add(basketItemYeast);
+                break;
+            case "Cake Donuts":
+                CakeFlavor cakeFlavor = getCakeFlavor(dfType);
+                CakeDonut cakeDonut = new CakeDonut(cakeFlavor);
+                BasketItem basketItemCake = new BasketItem(cakeDonut,quantity);
+                basketItems.add(basketItemCake);
+                break;
+            case "Donut Holes":
+                HoleFlavor holeFlavor = getHoleFlavor(dfType);
+                DonutHole donutHole = new DonutHole(holeFlavor);
+                BasketItem basketItemHole = new BasketItem(donutHole,quantity);
+                basketItems.add(basketItemHole);
+                break;
+        }
+        reset();
+        donutType.setValue("Yeast Donuts");
+        basketItemsListView.setItems(basketItems);
+        setBasketPrice();
     }
 
     @FXML
@@ -106,26 +159,26 @@ public class OrderDonutsController {
             return;
         }
         enableSubmitToBasketBox();
-        priceByType(dType,quantity);
+        priceByType(dType,quantity,dfType);
     }
 
     @FXML
-    private void priceByType(String donutType, double quantity){
+    private void priceByType(String donutType, double quantity, String donutFlavorType){
         switch(donutType){
             case "Yeast Donuts":
-                YeastFlavor yeastFlavor = getYeastFlavor(donutType);
+                YeastFlavor yeastFlavor = getYeastFlavor(donutFlavorType);
                 YeastDonut yeastDonut = new YeastDonut(yeastFlavor);
-                selectionTotal.setText("$"+ Math.round(yeastDonut.itemPrice() * quantity * 100.0) / 100.0);
+                selectionTotal.setText(format("$"+ (Math.round(yeastDonut.itemPrice() * quantity * 100.0) / 100.0)));
                 break;
             case "Cake Donuts":
-                CakeFlavor cakeFlavor = getCakeFlavor(donutType);
+                CakeFlavor cakeFlavor = getCakeFlavor(donutFlavorType);
                 CakeDonut cakeDonut = new CakeDonut(cakeFlavor);
-                selectionTotal.setText("$"+ Math.round(cakeDonut.itemPrice() * quantity * 100.0) / 100.0);
+                selectionTotal.setText(format("$"+ (Math.round(cakeDonut.itemPrice() * quantity * 100.0) / 100.0)));
                 break;
             case "Donut Holes":
-                HoleFlavor holeFlavor = getHoleFlavor(donutType);
+                HoleFlavor holeFlavor = getHoleFlavor(donutFlavorType);
                 DonutHole donutHole = new DonutHole(holeFlavor);
-                selectionTotal.setText("$"+Math.round(donutHole.itemPrice() * quantity * 100.0) / 100.0 );
+                selectionTotal.setText(format("$"+ (Math.round(donutHole.itemPrice() * quantity * 100.0) / 100.0)));
                 break;
         }
     }
@@ -141,11 +194,14 @@ public class OrderDonutsController {
     }
 
     @FXML
+    private void enableRemoveBox(){
+        removeButton.disableProperty().set(false);
+    }
+
+    @FXML
     private void reset(){
         addToBasketButton.disableProperty().set(true);
-        numDonuts.setValue(null);
-        numDonuts.setPromptText("Amount:");
-        selectionTotal.setText(null);
+        selectionTotal.setText("$0.00");
     }
 
     private HoleFlavor getHoleFlavor(String flavorType){
@@ -176,6 +232,14 @@ public class OrderDonutsController {
             case "Strawberry Short-Cake": return CakeFlavor.STRAWBERRY;
         }
         return null;
+    }
+
+    private String format(String input){
+        String[] places = input.split("\\.");
+        if(places[1].length()<2){
+            input+="0";
+        }
+        return input;
     }
 
 }

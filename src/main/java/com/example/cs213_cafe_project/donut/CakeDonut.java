@@ -66,7 +66,7 @@ public class CakeDonut extends MenuItem {
      */
     @Override
     public String toString(){
-        return "Cake Donut - Flavor: "+cakeFlavor.getFlavor();
+        return "Cake Donut - "+cakeFlavor.getFlavor();
     }
 
     /**

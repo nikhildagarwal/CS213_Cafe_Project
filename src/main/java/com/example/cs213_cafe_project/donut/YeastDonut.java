@@ -66,7 +66,7 @@ public class YeastDonut extends MenuItem {
      */
     @Override
     public String toString(){
-        return "Yeast Donut - Flavor: "+yeastFlavor.getFlavor();
+        return "Yeast Donut - "+yeastFlavor.getFlavor();
     }
 
     /**
