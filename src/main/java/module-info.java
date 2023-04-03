@@ -9,4 +9,6 @@ module com.example.cs213_cafe_project {
     opens com.example.cs213_cafe_project.donut to javafx.fxml;
     exports com.example.cs213_cafe_project.donut.flavors;
     opens com.example.cs213_cafe_project.donut.flavors to javafx.fxml;
+    exports com.example.cs213_cafe_project.data;
+    opens com.example.cs213_cafe_project.data to javafx.fxml;
 }

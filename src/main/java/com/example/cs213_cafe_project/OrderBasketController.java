@@ -1,5 +1,7 @@
 package com.example.cs213_cafe_project;
 
+import com.example.cs213_cafe_project.data.MenuItem;
+import com.example.cs213_cafe_project.data.Order;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;

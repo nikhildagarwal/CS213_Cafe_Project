@@ -1,4 +1,4 @@
-package com.example.cs213_cafe_project;
+package com.example.cs213_cafe_project.data;
 
 import com.example.cs213_cafe_project.cofee.AddOn;
 import com.example.cs213_cafe_project.cofee.Coffee;

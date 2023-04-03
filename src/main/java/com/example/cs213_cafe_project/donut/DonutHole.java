@@ -5,7 +5,7 @@
 package com.example.cs213_cafe_project.donut;
 
 import com.example.cs213_cafe_project.donut.flavors.HoleFlavor;
-import com.example.cs213_cafe_project.MenuItem;
+import com.example.cs213_cafe_project.data.MenuItem;
 
 /**
  * DonutHole object which extends the superClass MenuItem

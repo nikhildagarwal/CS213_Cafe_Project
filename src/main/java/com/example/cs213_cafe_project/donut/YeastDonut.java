@@ -4,7 +4,7 @@
  */
 package com.example.cs213_cafe_project.donut;
 
-import com.example.cs213_cafe_project.MenuItem;
+import com.example.cs213_cafe_project.data.MenuItem;
 import com.example.cs213_cafe_project.donut.flavors.YeastFlavor;
 
 /**

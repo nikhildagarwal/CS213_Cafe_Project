@@ -29,22 +29,22 @@
             <Insets />
          </BorderPane.margin>
          <children>
-            <ComboBox fx:id="coffeeSize" prefWidth="150.0" promptText="Size:">
+            <ComboBox fx:id="coffeeSize" prefWidth="150.0" promptText="Size:" onAction="#setCoffeePrice">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="numCoffee" prefWidth="150.0" promptText="Amount:">
+            <ComboBox fx:id="numCoffee" prefWidth="150.0" promptText="Amount:" disable="true" onAction="#setCoffeePrice">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </ComboBox>
-            <TextField editable="false">
+            <TextField fx:id="coffeePrice" editable="false">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
             </TextField>
-            <Button mnemonicParsing="false" text="Add to Order">
+            <Button mnemonicParsing="false" text="Add to Order" disable="true" fx:id="addCoffeeToOrder">
                <VBox.margin>
                   <Insets top="50.0" />
                </VBox.margin>
@@ -78,11 +78,11 @@
                   <Insets top="70.0" />
                </VBox.margin>
                <children>
-                  <CheckBox mnemonicParsing="false" text="Sweet Cream" />
-                  <CheckBox mnemonicParsing="false" text="Mocha" GridPane.columnIndex="1" />
-                  <CheckBox mnemonicParsing="false" text="French Vanilla" GridPane.rowIndex="1" />
-                  <CheckBox mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                  <CheckBox mnemonicParsing="false" text="Irish Cream" GridPane.rowIndex="2" />
+                  <CheckBox mnemonicParsing="false" text="Sweet Cream" fx:id="sweetCreamAddOn"  disable="true" onAction="#setCoffeePrice"/>
+                  <CheckBox mnemonicParsing="false" text="Mocha" GridPane.columnIndex="1" fx:id="mochaAddOn"  disable="true" onAction="#setCoffeePrice"/>
+                  <CheckBox mnemonicParsing="false" text="French Vanilla" GridPane.rowIndex="1" fx:id="frenchVanillaAddOn"  disable="true" onAction="#setCoffeePrice"/>
+                  <CheckBox mnemonicParsing="false" text="Caramel" GridPane.columnIndex="1" GridPane.rowIndex="1" fx:id="caramelAddOn"  disable="true" onAction="#setCoffeePrice"/>
+                  <CheckBox mnemonicParsing="false" text="Irish Cream" GridPane.rowIndex="2" fx:id="irishCreamAddOn"  disable="true" onAction="#setCoffeePrice"/>
                </children>
             </GridPane>
          </children>

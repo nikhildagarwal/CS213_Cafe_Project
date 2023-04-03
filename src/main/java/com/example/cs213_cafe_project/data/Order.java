@@ -1,13 +1,12 @@
 /**
  * master package for all java files
  */
-package com.example.cs213_cafe_project;
+package com.example.cs213_cafe_project.data;
 
 import com.example.cs213_cafe_project.cofee.AddOn;
 import com.example.cs213_cafe_project.cofee.Coffee;
 import com.example.cs213_cafe_project.cofee.Size;
 import com.example.cs213_cafe_project.donut.CakeDonut;
-import com.example.cs213_cafe_project.donut.YeastDonut;
 import com.example.cs213_cafe_project.donut.flavors.CakeFlavor;
 import java.util.HashMap;
 import java.util.HashSet;

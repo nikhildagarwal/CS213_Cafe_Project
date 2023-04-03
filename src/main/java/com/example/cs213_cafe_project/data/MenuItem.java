@@ -1,7 +1,7 @@
 /**
  * master package for all java files
  */
-package com.example.cs213_cafe_project;
+package com.example.cs213_cafe_project.data;
 
 /**
  * Abstract class MenuItem

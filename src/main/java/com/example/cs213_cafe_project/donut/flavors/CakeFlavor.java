@@ -18,12 +18,12 @@ public enum CakeFlavor {
     /**
      * Chocolate cake
      */
-    CHOCOLATE("Chocolate"),
+    CHOCOLATE("Chocolate Cake"),
 
     /**
      * Strawberry short cake
      */
-    STRAWBERRY("Strawberry");
+    STRAWBERRY("Strawberry Short-Cake");
 
     /**
      * String description of the flavor

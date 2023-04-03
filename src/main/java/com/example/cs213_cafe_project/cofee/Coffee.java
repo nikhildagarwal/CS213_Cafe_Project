@@ -3,7 +3,7 @@
  */
 package com.example.cs213_cafe_project.cofee;
 
-import com.example.cs213_cafe_project.MenuItem;
+import com.example.cs213_cafe_project.data.MenuItem;
 import java.util.HashSet;
 
 /**
