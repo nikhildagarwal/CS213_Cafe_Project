@@ -46,7 +46,7 @@
                   <Insets top="10.0" />
                </VBox.margin>
             </ListView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="281.0" text="Add To Basket" fx:id="addToBasketButton" disable="true">
+            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="281.0" text="Add To Basket" fx:id="addToBasketButton" disable="true" onAction="#addToBasket">
                <VBox.margin>
                   <Insets />
                </VBox.margin>

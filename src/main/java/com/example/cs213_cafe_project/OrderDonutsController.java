@@ -88,6 +88,11 @@ public class OrderDonutsController {
     private TextField selectionTotal;
 
     @FXML
+    public void addToBasket(){
+        
+    }
+
+    @FXML
     public void setSelectionPrice(){
         String dType = donutType.valueProperty().getValue();
         enableAmountBox();
@@ -101,19 +106,24 @@ public class OrderDonutsController {
             return;
         }
         enableSubmitToBasketBox();
-        switch(dType){
+        priceByType(dType,quantity);
+    }
+
+    @FXML
+    private void priceByType(String donutType, double quantity){
+        switch(donutType){
             case "Yeast Donuts":
-                YeastFlavor yeastFlavor = getYeastFlavor(dfType);
+                YeastFlavor yeastFlavor = getYeastFlavor(donutType);
                 YeastDonut yeastDonut = new YeastDonut(yeastFlavor);
                 selectionTotal.setText("$"+ Math.round(yeastDonut.itemPrice() * quantity * 100.0) / 100.0);
                 break;
             case "Cake Donuts":
-                CakeFlavor cakeFlavor = getCakeFlavor(dfType);
+                CakeFlavor cakeFlavor = getCakeFlavor(donutType);
                 CakeDonut cakeDonut = new CakeDonut(cakeFlavor);
                 selectionTotal.setText("$"+ Math.round(cakeDonut.itemPrice() * quantity * 100.0) / 100.0);
                 break;
             case "Donut Holes":
-                HoleFlavor holeFlavor = getHoleFlavor(dfType);
+                HoleFlavor holeFlavor = getHoleFlavor(donutType);
                 DonutHole donutHole = new DonutHole(holeFlavor);
                 selectionTotal.setText("$"+Math.round(donutHole.itemPrice() * quantity * 100.0) / 100.0 );
                 break;
