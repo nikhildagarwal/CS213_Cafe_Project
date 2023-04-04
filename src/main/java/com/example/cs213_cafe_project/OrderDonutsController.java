@@ -86,6 +86,8 @@ public class OrderDonutsController {
     }
 
     @FXML
+    private Button addToOrderButton;
+    @FXML
     private Button removeButton;
     @FXML
     private Button addToBasketButton;
@@ -100,6 +102,9 @@ public class OrderDonutsController {
         BasketItem selectedItem = basketItemsListView.getSelectionModel().getSelectedItem();
         basketItems.remove(selectedItem);
         setBasketPrice();
+        if(basketItems.isEmpty()){
+            addToOrderButton.disableProperty().set(true);
+        }
     }
 
     @FXML
@@ -143,6 +148,7 @@ public class OrderDonutsController {
         donutType.setValue("Yeast Donuts");
         basketItemsListView.setItems(basketItems);
         setBasketPrice();
+        addToOrderButton.disableProperty().set(false);
     }
 
     @FXML
