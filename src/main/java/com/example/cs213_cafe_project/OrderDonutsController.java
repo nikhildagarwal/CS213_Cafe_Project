@@ -202,6 +202,7 @@ public class OrderDonutsController {
     private void reset(){
         addToBasketButton.disableProperty().set(true);
         selectionTotal.setText("$0.00");
+        selectionTotal.focusTraversableProperty().set(false);
     }
 
     private HoleFlavor getHoleFlavor(String flavorType){
