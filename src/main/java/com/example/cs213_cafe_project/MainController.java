@@ -40,7 +40,6 @@ public class MainController {
     @FXML
     protected void displayCoffeeView() {
         Stage coffeeView = new Stage();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffee.fxml"));
 
@@ -61,7 +60,6 @@ public class MainController {
     @FXML
     protected void displayDonutView() {
         Stage donutView = new Stage();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("donutsView.fxml"));
             Scene scene = new Scene(loader.load(), 600, 600);
@@ -81,20 +79,13 @@ public class MainController {
     @FXML
     protected void displayBasketView() {
         Stage basketView = new Stage();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasket.fxml"));
-
             Scene scene = new Scene(loader.load(), 600, 600);
             basketView.setScene(scene);
             basketView.show();
-            OrderBasketController basketViewController = loader.getController();
-            /*
-              The statement below is to pass the reference of the MainController object
-              to the OrderBasketController object so the OrderBasketController can call the
-              public methods in the MainController.
-             */
-            basketViewController.setMainController(this);
+            OrderBasketController basketController = loader.getController();
+            basketController.setMainController(this);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("ERROR");
@@ -107,19 +98,12 @@ public class MainController {
     @FXML
     protected void displayStoreView() {
         Stage storeOrderView = new Stage();
-
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrders.fxml"));
-
             Scene scene = new Scene(loader.load(), 600, 600);
             storeOrderView.setScene(scene);
             storeOrderView.show();
             StoreOrderController storeOrderController = loader.getController();
-            /*
-              The statement below is to pass the reference of the MainController object
-              to the StoreOrderController object so the StoreOrderController can call the
-              public methods in the MainController.
-             */
             storeOrderController.setMainController(this);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);

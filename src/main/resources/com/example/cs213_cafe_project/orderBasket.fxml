@@ -11,8 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.cs213_cafe_project.OrderBasketController">
    <top>
       <GridPane prefHeight="104.0" prefWidth="600.0" BorderPane.alignment="CENTER">
         <columnConstraints>
@@ -34,16 +33,17 @@
             <Label text="Sub-Total:" GridPane.columnIndex="1" />
             <Label text="Sales Tax:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
             <Label text="Total Amount:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
-            <TextField editable="false" GridPane.columnIndex="2" />
-            <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" />
-            <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" />
+            <TextField editable="false" GridPane.columnIndex="2" fx:id="subTotal"/>
+            <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="1" fx:id="tax"/>
+            <TextField editable="false" GridPane.columnIndex="2" GridPane.rowIndex="2" fx:id="total"/>
+            <Button mnemonicParsing="false" text="Load Basket" GridPane.rowIndex="1" fx:id="loadBasketButton" onAction="#setLoadBasket"/>
          </children>
       </GridPane>
    </top>
    <center>
       <VBox prefHeight="200.0" prefWidth="100.0" BorderPane.alignment="CENTER">
          <children>
-            <ListView prefHeight="200.0" prefWidth="200.0" />
+            <ListView fx:id="basketListView" prefHeight="200.0" prefWidth="200.0" onMouseClicked="#listViewSelected"/>
             <GridPane>
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -55,8 +55,8 @@
                 <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
               </rowConstraints>
                <children>
-                  <Button mnemonicParsing="false" text="Remove Selected Item" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
-                  <Button mnemonicParsing="false" text="Place Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                  <Button mnemonicParsing="false" text="Remove Selected Item" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="removeButton" onAction="#removeSelectedItem"/>
+                  <Button mnemonicParsing="false" text="Place Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="placeOrderButton"/>
                </children>
             </GridPane>
          </children>

@@ -22,6 +22,7 @@ import java.util.HashSet;
 
 public class OrderDonutsController {
 
+    public static final int DONUTVIEW = 1;
     private MainController mainController;
 
     @FXML
@@ -50,9 +51,7 @@ public class OrderDonutsController {
         mainController = controller;
     }
 
-
-    public void initialize()
-    {
+    public void initialize() {
         donutList = FXCollections.observableArrayList("Yeast Donuts", "Cake Donuts", "Donut Holes");
         donutType.setItems(donutList);
         donutAmount = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12");
@@ -110,6 +109,12 @@ public class OrderDonutsController {
             BasketItem currItem = basketItems.get(i);
             fullBasket.add(currItem);
         }
+        basketTotal.setText("$0.00");
+        basketItems.clear();
+        basketItemsListView.setItems(basketItems);
+        removeButton.disableProperty().set(true);
+        basketItemsListView.disableProperty().set(true);
+        addToOrderButton.disableProperty().set(true);
     }
 
     @FXML
@@ -121,8 +126,9 @@ public class OrderDonutsController {
         setBasketPrice();
         if(!basketItems.isEmpty()){
             basketItemsListView.disableProperty().set(false);
+            addToOrderButton.disableProperty().set(false);
         }else{
-            basketItemsListView.setItems(FXCollections.observableArrayList(new BasketItem()));
+            basketItemsListView.setItems(FXCollections.observableArrayList(new BasketItem(DONUTVIEW)));
         }
     }
 

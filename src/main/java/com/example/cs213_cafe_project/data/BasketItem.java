@@ -4,6 +4,9 @@ public class BasketItem {
     private MenuItem menuItem;
     private int quantity;
 
+    public static final int BASKETVIEW = 0;
+    public static final int DONUTVIEW = 1;
+
     public BasketItem(MenuItem menuItem,int quantity){
         this.menuItem = menuItem;
         this.quantity = quantity;
@@ -12,6 +15,11 @@ public class BasketItem {
     public BasketItem(){
         this.menuItem = null;
         this.quantity = 0;
+    }
+
+    public BasketItem(int quantity){
+        this.menuItem = null;
+        this.quantity = quantity;
     }
 
     public MenuItem getMenuItem(){
@@ -24,8 +32,11 @@ public class BasketItem {
 
     @Override
     public String toString(){
-        if(quantity == 0){
-            return "Basket is Empty";
+        if(menuItem == null && quantity == BASKETVIEW){
+            return "Basket is Empty!\nPlease go to 'Donuts' or 'Coffee' to add items to your basket.";
+        }
+        if(menuItem ==null && quantity == DONUTVIEW){
+            return "Basket is Empty!\nPlease select donuts to add.";
         }
         return quantity+ " x " + menuItem.toString();
     }
