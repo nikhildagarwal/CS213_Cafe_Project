@@ -77,7 +77,12 @@ public class DonutHole extends MenuItem {
      */
     @Override
     public boolean equals(Object obj){
-        DonutHole donutHole = (DonutHole) obj;
+        DonutHole donutHole;
+        try{
+            donutHole = (DonutHole) obj;
+        }catch (Exception e){
+            return false;
+        }
         if(holeFlavor.equals(donutHole.getHoleFlavor())){
             return true;
         }

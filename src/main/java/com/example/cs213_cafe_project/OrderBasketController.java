@@ -3,6 +3,7 @@ package com.example.cs213_cafe_project;
 import com.example.cs213_cafe_project.data.BasketItem;
 import com.example.cs213_cafe_project.data.MenuItem;
 import com.example.cs213_cafe_project.data.Order;
+import com.example.cs213_cafe_project.donut.YeastDonut;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -12,6 +13,9 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+
 public class OrderBasketController {
 
     private MainController mainController;
@@ -96,11 +100,68 @@ public class OrderBasketController {
         }
     }
 
+    @FXML
+    public void placeOrder(){
+        createOrder();
+    }
+
+    private void createOrder(){
+        ObservableList<BasketItem> fullBasket = mainController.getFullBasket();
+        ArrayList<BasketItem> orderList = new ArrayList<>();
+        createOrderList(orderList,fullBasket);
+        int orderNumber = generateOrderNumber();
+        Order order = new Order(orderNumber,orderList);
+        ObservableList<Order> listOfOrders = mainController.getListOfOrders();
+        listOfOrders.add(order);
+        fullBasket.clear();
+        basketListView.setItems(FXCollections.observableArrayList(new BasketItem(BasketItem.ORDERPLACED)));
+        placeOrderButton.disableProperty().set(true);
+        removeButton.disableProperty().set(true);
+        basketListView.disableProperty().set(true);
+        subTotal.setText("$0.00");
+        total.setText("$0.00");
+        tax.setText("$0.00");
+    }
+
+    private int generateOrderNumber(){
+        HashSet<Integer> orderNumbers = mainController.getOrderNumbers();
+        int randomNum = (int) (Math.random() * 1000);
+        while(true){
+            if(!orderNumbers.contains(randomNum)){
+                orderNumbers.add(randomNum);
+                return randomNum;
+            }
+        }
+    }
+
+    private void createOrderList(ArrayList<BasketItem> orderList,ObservableList<BasketItem> fullBasket){
+        for(int i = 0;i<fullBasket.size();i++){
+            BasketItem currBasketItem = fullBasket.get(i);
+            if(i==0){
+                orderList.add(currBasketItem);
+            }else{
+                boolean signal = false;
+                for(int j =0;j<orderList.size();j++){
+                    if(orderList.get(j).getMenuItem().equals(currBasketItem.getMenuItem())){
+                        BasketItem newItem = new BasketItem(orderList.get(j).getMenuItem(),currBasketItem.getQuantity()+orderList.get(j).getQuantity());
+                        orderList.add(newItem);
+                        orderList.remove(j);
+                        signal = true;
+                        j = orderList.size()+1;
+                    }
+                }
+                if(!signal){
+                    orderList.add(currBasketItem);
+                }
+            }
+        }
+    }
+
     private void setBasketPrice(ObservableList<BasketItem> basket){
         double subTotalAmount = 0.0;
         for(int i = 0;i< basket.size();i++){
             MenuItem currMenuItem = basket.get(i).getMenuItem();
-            subTotalAmount += currMenuItem.itemPrice();
+            subTotalAmount += (currMenuItem.itemPrice() * basket.get(i).getQuantity());
         }
         subTotalAmount = Math.round(subTotalAmount * 100.0) / 100.0;
         subTotal.setText(format(subTotalAmount));

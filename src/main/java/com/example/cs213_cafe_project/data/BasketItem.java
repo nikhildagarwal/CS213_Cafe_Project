@@ -6,6 +6,7 @@ public class BasketItem {
 
     public static final int BASKETVIEW = 0;
     public static final int DONUTVIEW = 1;
+    public static final int ORDERPLACED = 2;
 
     public BasketItem(MenuItem menuItem,int quantity){
         this.menuItem = menuItem;
@@ -33,10 +34,13 @@ public class BasketItem {
     @Override
     public String toString(){
         if(menuItem == null && quantity == BASKETVIEW){
-            return "Basket is Empty!\nPlease go to 'Donuts' or 'Coffee' to add items to your basket.";
+            return "Basket is Empty!";
         }
-        if(menuItem ==null && quantity == DONUTVIEW){
-            return "Basket is Empty!\nPlease select donuts to add.";
+        if(menuItem == null && quantity == DONUTVIEW){
+            return "Basket is Empty!";
+        }
+        if(menuItem == null && quantity == ORDERPLACED){
+            return "Order Placed!";
         }
         return quantity+ " x " + menuItem.toString();
     }

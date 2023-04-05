@@ -16,4 +16,5 @@ public abstract class MenuItem{
      */
     public abstract double itemPrice();
 
+    public abstract boolean equals(Object obj);
 }

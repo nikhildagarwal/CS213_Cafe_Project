@@ -14,11 +14,22 @@ import javafx.stage.Stage;
 
 import java.io.IOException;
 import java.text.RuleBasedCollator;
+import java.util.HashSet;
 
 public class MainController {
 
     private ObservableList<BasketItem> donutBasketItems = FXCollections.observableArrayList();
     private ObservableList<BasketItem> fullBasket = FXCollections.observableArrayList();
+    private ObservableList<Order> listOfOrders = FXCollections.observableArrayList();
+    private HashSet<Integer> orderNumbers = new HashSet<>();
+
+    public ObservableList<Order> getListOfOrders(){
+        return listOfOrders;
+    }
+
+    public HashSet<Integer> getOrderNumbers(){
+        return orderNumbers;
+    }
 
     public ObservableList<BasketItem> getDonutBasketItems(){
         return donutBasketItems;

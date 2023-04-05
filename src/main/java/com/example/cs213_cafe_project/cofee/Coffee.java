@@ -75,7 +75,10 @@ public class Coffee extends MenuItem {
      */
     @Override
     public String toString(){
-        return "Coffee - Size: "+size.getSize()+", AddOns: "+addOnList.toString();
+        if(addOnList.isEmpty()){
+            return "Coffee - Size: "+size.getSize()+", AddOns: None";
+        }
+        return "Coffee - Size: "+size.getSize()+", AddOns: "+addOnList;
     }
 
     /**
@@ -86,8 +89,13 @@ public class Coffee extends MenuItem {
      */
     @Override
     public boolean equals(Object obj){
-        Coffee coffee = (Coffee) obj;
-        if(coffee.size.equals(size) && coffee.addOnList.equals(addOnList)){
+        Coffee coffee;
+        try{
+            coffee = (Coffee) obj;
+        }catch (Exception e){
+            return false;
+        }
+        if(coffee.size==size && coffee.addOnList.equals(addOnList)){
             return true;
         }
         return false;

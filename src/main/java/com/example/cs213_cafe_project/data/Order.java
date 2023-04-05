@@ -8,6 +8,8 @@ import com.example.cs213_cafe_project.cofee.Coffee;
 import com.example.cs213_cafe_project.cofee.Size;
 import com.example.cs213_cafe_project.donut.CakeDonut;
 import com.example.cs213_cafe_project.donut.flavors.CakeFlavor;
+
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
@@ -21,107 +23,99 @@ import java.util.Map;
 public class Order {
 
     /**
+     * To indicate that there are no orders
+     */
+    public static final int EMPTY = 1;
+
+    /**
      * integer order number
      */
     private int orderNumber;
 
     /**
-     * HashMap orderList
-     * Keys: menuItems, Values: quantity of menuItem
+     * HashSet orderList
+     * Contains only unique basket items.
      */
-    private HashMap<MenuItem,Integer> orderList;
+    private ArrayList<BasketItem> orderList;
 
     /**
      * Constructor for order Object.
      * Initializes a new, empty order.
-     * @param orderNumber
+     * @param orderNumber The number of the order
      */
-    Order(int orderNumber){
+    public Order(int orderNumber){
         this.orderNumber = orderNumber;
-        this.orderList = new HashMap<>();
+        this.orderList = new ArrayList<>();
     }
 
     /**
      * Overload Constructor for order Object.
      * Creates an object with a non-empty, user selected order.
-     * @param orderNumber
-     * @param orderList
+     * @param orderNumber the number of the order
+     * @param orderList unique basketItems
      */
-    Order(int orderNumber, HashMap<MenuItem,Integer> orderList){
+    public Order(int orderNumber, ArrayList<BasketItem> orderList){
         this.orderNumber = orderNumber;
         this.orderList = orderList;
     }
 
     /**
-     * Override for toString() method in Java object class.
-     * Prints order object as a string.
-     * Also prints the total costs of the order.
-     * @return String output consisting of order Number, menuItems and corresponding quantity, as well as order subtotals.
+     * Getter method for order Number
+     * @return integer order Number
+     */
+    public int getOrderNumber(){
+        return orderNumber;
+    }
+
+    /**
+     * Getter method for list of items in the order.
+     * @return ArrayList of BasketItem objects
+     */
+    public ArrayList<BasketItem> getOrderList(){
+        return orderList;
+    }
+
+    /**
+     * Method to calculate the total price of an order including tax
+     * @return String value of the total price
+     */
+    public String getOrderPrice(){
+        double total = 0.0;
+        for(int i = 0;i<orderList.size();i++){
+            total += (orderList.get(i).getMenuItem().itemPrice() * orderList.get(i).getQuantity());
+        }
+        total = total * 1.06625;
+        return format(Math.round(total * 100.0) / 100.0);
+    }
+
+    /**
+     * Override of toString() method in Java Object class
+     * @return the order object as a String that detains the contents of each order.
      */
     @Override
     public String toString(){
-        String output = "";
-        output += ("Order Number: "+orderNumber+"\n");
-        for(Map.Entry<MenuItem,Integer> entry: orderList.entrySet()){
-            MenuItem item = entry.getKey();
-            Integer num = entry.getValue();
-            output += item.toString();
-            output += (". Quantity: "+ num);
-            output += "\n";
+        if(orderNumber == EMPTY){
+            return "No Orders Yet";
         }
-        Order order = new Order(orderNumber,orderList);
-        output += ("Order Price: $" + order.orderPrice() + "\n");
-        output += ("Tax: $" + order.orderTax() + "\n");
-        output += ("Order Total: $" + order.orderTotal() + "\n");
+        String output = "";
+        for(int i = 0;i<orderList.size();i++){
+            output += (orderList.get(i).toString() + "\n");
+        }
         return output;
     }
 
     /**
-     * Returns the total price of the order
-     * (NOT INCLUDING TAX)
-     * @return double order price - tax
+     * Formats a double number into money format
+     * Ex: 923.5  -->  $923.50
+     * @param total a double value
+     * @return String in the formal of $0.00
      */
-    public double orderPrice(){
-        double total = 0;
-        for(Map.Entry<MenuItem,Integer> entry: orderList.entrySet()){
-            MenuItem item = entry.getKey();
-            Integer num = entry.getValue();
-            total += (item.itemPrice() * num);
+    private String format(double total){
+        String totalString = Double.toString(total);
+        String[] splitter = totalString.split("\\.");
+        if(splitter[1].length()<2){
+            totalString += "0";
         }
-        return total;
-    }
-
-    /**
-     * Returns the total tax for an order
-     * @return double tax
-     */
-    public double orderTax(){
-        Order order = new Order(orderNumber,orderList);
-        return Math.round(order.orderPrice() * 0.06625 * 100.0) / 100.0;
-    }
-
-    /**
-     * Returns the total cost of the order
-     * (PRICE + TAX)
-     * @return double total amount due
-     */
-    public double orderTotal(){
-        Order order = new Order(orderNumber,orderList);
-        return order.orderTax() + order.orderPrice();
-    }
-
-    public static void main (String args[]){
-        CakeDonut cakeDonut = new CakeDonut(CakeFlavor.STRAWBERRY);
-        int cakeDonutQuantity = 2;
-        HashSet<AddOn> addOns = new HashSet<>();
-        addOns.add(AddOn.CARAMEL);
-        addOns.add(AddOn.MOCHA);
-        Coffee coffee = new Coffee(Size.VENTI,addOns);
-        int coffeeQuantity = 1;
-        HashMap<MenuItem,Integer> orderList = new HashMap<>();
-        orderList.put(cakeDonut,cakeDonutQuantity);
-        orderList.put(coffee,coffeeQuantity);
-        Order myOrder = new Order(98234,orderList);
-        System.out.println(myOrder);
+        return totalString;
     }
 }

@@ -56,7 +56,7 @@
               </rowConstraints>
                <children>
                   <Button mnemonicParsing="false" text="Remove Selected Item" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="removeButton" onAction="#removeSelectedItem"/>
-                  <Button mnemonicParsing="false" text="Place Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="placeOrderButton"/>
+                  <Button mnemonicParsing="false" text="Place Order" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="placeOrderButton" onAction="#placeOrder"/>
                </children>
             </GridPane>
          </children>

@@ -77,7 +77,12 @@ public class CakeDonut extends MenuItem {
      */
     @Override
     public boolean equals(Object obj){
-        CakeDonut cakeDonut = (CakeDonut) obj;
+        CakeDonut cakeDonut;
+        try{
+            cakeDonut = (CakeDonut) obj;
+        }catch (Exception e){
+            return false;
+        }
         if(cakeFlavor.equals(cakeDonut.getCakeFlavor())){
             return true;
         }

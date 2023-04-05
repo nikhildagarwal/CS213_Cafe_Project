@@ -77,7 +77,12 @@ public class YeastDonut extends MenuItem {
      */
     @Override
     public boolean equals(Object obj){
-        YeastDonut yeastDonut = (YeastDonut) obj;
+        YeastDonut yeastDonut;
+        try{
+            yeastDonut = (YeastDonut) obj;
+        }catch(Exception e) {
+            return false;
+        }
         if(yeastFlavor.equals(yeastDonut.getYeastFlavor())){
             return true;
         }
