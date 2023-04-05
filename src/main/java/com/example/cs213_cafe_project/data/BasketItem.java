@@ -9,6 +9,11 @@ public class BasketItem {
         this.quantity = quantity;
     }
 
+    public BasketItem(){
+        this.menuItem = null;
+        this.quantity = 0;
+    }
+
     public MenuItem getMenuItem(){
         return menuItem;
     }
@@ -19,6 +24,9 @@ public class BasketItem {
 
     @Override
     public String toString(){
+        if(quantity == 0){
+            return "Basket is Empty";
+        }
         return quantity+ " x " + menuItem.toString();
     }
 }

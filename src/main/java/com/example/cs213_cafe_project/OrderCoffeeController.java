@@ -3,11 +3,13 @@ package com.example.cs213_cafe_project;
 import com.example.cs213_cafe_project.cofee.AddOn;
 import com.example.cs213_cafe_project.cofee.Coffee;
 import com.example.cs213_cafe_project.cofee.Size;
+import com.example.cs213_cafe_project.data.BasketItem;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
+import javafx.scene.control.skin.ComboBoxBaseSkin;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Background;
 import javafx.scene.paint.Color;
@@ -35,6 +37,8 @@ public class OrderCoffeeController {
         coffeeSize.setItems(coffeeSizeList);
         coffeeAmount = FXCollections.observableArrayList("1","2","3","4","5");
         numCoffee.setItems(coffeeAmount);
+        coffeePrice.setText("$0.00");
+        coffeePrice.focusTraversableProperty().set(false);
     }
 
     @FXML
@@ -51,6 +55,46 @@ public class OrderCoffeeController {
     private CheckBox caramelAddOn;
     @FXML
     private CheckBox irishCreamAddOn;
+
+    @FXML
+    public void addCoffeeToOrderClicked(){
+        Size size = getSizeFromString(coffeeSize.valueProperty().getValue());
+        String amount = numCoffee.valueProperty().getValue();
+        int quantity = Integer.parseInt(amount);
+        HashSet<AddOn> addOnList = new HashSet<>();
+        fillSet(addOnList, sweetCreamAddOn.isSelected(), mochaAddOn.isSelected(), frenchVanillaAddOn.isSelected(), caramelAddOn.isSelected(), irishCreamAddOn.isSelected());
+        Coffee myCoffee = new Coffee(size,addOnList);
+        BasketItem myItem = new BasketItem(myCoffee,quantity);
+        ObservableList<BasketItem> fullBasket = mainController.getFullBasket();
+        fullBasket.add(myItem);
+        reset();
+    }
+
+    private void reset(){
+        addCoffeeToOrder.disableProperty().set(true);
+        coffeePrice.setText("$0.00");
+        coffeePrice.focusTraversableProperty().set(false);
+        numCoffee.setPromptText("Amount:");
+        numCoffee.disableProperty().set(true);
+        disableCheckBoxes();
+        unselectCheckBoxes();
+    }
+
+    private void disableCheckBoxes(){
+        sweetCreamAddOn.disableProperty().set(true);
+        mochaAddOn.disableProperty().set(true);
+        frenchVanillaAddOn.disableProperty().set(true);
+        caramelAddOn.disableProperty().set(true);
+        irishCreamAddOn.disableProperty().set(true);
+    }
+
+    private void unselectCheckBoxes(){
+        sweetCreamAddOn.selectedProperty().set(false);
+        mochaAddOn.selectedProperty().set(false);
+        frenchVanillaAddOn.selectedProperty().set(false);
+        caramelAddOn.selectedProperty().set(false);
+        irishCreamAddOn.selectedProperty().set(false);
+    }
 
 
     @FXML

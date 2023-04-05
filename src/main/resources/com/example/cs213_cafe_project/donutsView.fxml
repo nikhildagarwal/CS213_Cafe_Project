@@ -25,15 +25,15 @@
    <left>
       <VBox alignment="CENTER" prefHeight="290.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets left="30.0" />
+            <Insets left="30.0" top="10.0" />
          </BorderPane.margin>
          <children>
-            <ComboBox fx:id="donutType" onAction="#displaySelected" prefWidth="150.0" promptText="Choose Donut:">
+            <ComboBox fx:id="donutType" onAction="#displaySelected" prefWidth="150.0" promptText="Choose Donut:" disable="true">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </ComboBox>
-            <ComboBox fx:id="numDonuts" prefWidth="150.0" promptText="Amount:" disable="true" onAction="#setSelectionPrice">
+            <ComboBox fx:id="numDonuts" disable="true" onAction="#setSelectionPrice" prefWidth="150.0" promptText="Amount:">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -41,12 +41,12 @@
                   <Insets />
                </opaqueInsets>
             </ComboBox>
-            <ListView fx:id="donutFlavorType" maxHeight="-Infinity" prefHeight="300.0" prefWidth="200.0" onMouseClicked="#setSelectionPrice">
+            <ListView fx:id="donutFlavorType" maxHeight="-Infinity" onMouseClicked="#setSelectionPrice" prefHeight="190.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets top="10.0" />
                </VBox.margin>
             </ListView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="281.0" text="Add To Basket" fx:id="addToBasketButton" disable="true" onAction="#addToBasket">
+            <Button fx:id="addToBasketButton" disable="true" mnemonicParsing="false" onAction="#addToBasket" prefHeight="25.0" prefWidth="281.0" text="Add To Basket">
                <VBox.margin>
                   <Insets />
                </VBox.margin>
@@ -60,24 +60,29 @@
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
-            <Insets right="15.0" />
+            <Insets right="15.0" top="25.0" />
          </BorderPane.margin>
          <children>
             <ImageView fx:id="donutImage" fitHeight="1.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="17.0" prefWidth="188.0" text="Donut Basket Sub-Total:" />
-            <TextField editable="false" prefHeight="25.0" prefWidth="194.0" fx:id="basketTotal">
+            <TextField fx:id="basketTotal" editable="false" prefHeight="25.0" prefWidth="194.0">
                <VBox.margin>
                   <Insets right="15.0" />
                </VBox.margin>
             </TextField>
-            <ListView prefHeight="200.0" prefWidth="200.0" fx:id="basketItemsListView" onMouseClicked="#enableRemoveBox">
+            <ListView fx:id="basketItemsListView" onMouseClicked="#enableRemoveBox" prefHeight="200.0" prefWidth="200.0">
                <VBox.margin>
                   <Insets right="15.0" top="10.0" />
                </VBox.margin>
             </ListView>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="185.0" text="Remove" fx:id="removeButton" disable="true" onAction="#removeButtonClicked">
+            <Button fx:id="removeButton" disable="true" mnemonicParsing="false" onAction="#removeButtonClicked" prefHeight="25.0" prefWidth="185.0" text="Remove">
                <VBox.margin>
                   <Insets />
+               </VBox.margin>
+            </Button>
+            <Button fx:id="loadPreviousBasket" mnemonicParsing="false" onAction="#setInitialBasket" prefHeight="25.0" prefWidth="185.0" text="Load Basket" >
+               <VBox.margin>
+                  <Insets top="50.0" />
                </VBox.margin>
             </Button>
          </children>
@@ -96,13 +101,13 @@
           <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
          <children>
-            <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Add Basket To Order" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" fx:id="addToOrderButton" disable="true"/>
+            <Button fx:id="addToOrderButton" onAction="#addToOrderButtonClicked" disable="true" mnemonicParsing="false" prefHeight="25.0" prefWidth="137.0" text="Add Basket To Order" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
             <Label prefHeight="17.0" prefWidth="133.0" text="Selection Sub-Total:">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>
             </Label>
-            <TextField editable="false" prefHeight="35.0" prefWidth="170.0" GridPane.rowIndex="1" fx:id="selectionTotal">
+            <TextField fx:id="selectionTotal" editable="false" prefHeight="35.0" prefWidth="170.0" GridPane.rowIndex="1">
                <GridPane.margin>
                   <Insets left="30.0" />
                </GridPane.margin>

@@ -1,5 +1,9 @@
 package com.example.cs213_cafe_project;
 
+import com.example.cs213_cafe_project.data.BasketItem;
+import com.example.cs213_cafe_project.data.Order;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -9,9 +13,20 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.text.RuleBasedCollator;
 
 public class MainController {
-    private int value = 10;
+
+    private ObservableList<BasketItem> donutBasketItems = FXCollections.observableArrayList();
+    private ObservableList<BasketItem> fullBasket = FXCollections.observableArrayList();
+
+    public ObservableList<BasketItem> getDonutBasketItems(){
+        return donutBasketItems;
+    }
+
+    public ObservableList<BasketItem> getFullBasket(){
+        return fullBasket;
+    }
 
 
 
@@ -33,11 +48,6 @@ public class MainController {
             coffeeView.setScene(scene);
             coffeeView.show();
             OrderCoffeeController coffeeViewController = loader.getController();
-            /*
-              The statement below is to pass the reference of the MainController object
-              to the OrderCoffeeController object so the OrderCoffeeController can call the
-              public methods in the MainController.
-             */
             coffeeViewController.setMainController(this);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -54,16 +64,10 @@ public class MainController {
 
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("donutsView.fxml"));
-
             Scene scene = new Scene(loader.load(), 600, 600);
             donutView.setScene(scene);
             donutView.show();
             OrderDonutsController donutViewController = loader.getController();
-            /*
-              The statement below is to pass the reference of the MainController object
-              to the OrderDonutsController object so the OrderDonutsController can call the
-              public methods in the MainController.
-             */
             donutViewController.setMainController(this);
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -124,13 +128,5 @@ public class MainController {
             alert.setContentText("Couldn't load storeOrders.fxml.");
             alert.showAndWait();
         }
-    }
-
-    /**
-     * The controller can use this getter method to read the private data.
-     * @return
-     */
-    public int getValue() {
-        return value;
     }
 }
