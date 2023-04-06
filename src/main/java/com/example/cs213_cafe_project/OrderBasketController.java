@@ -57,7 +57,6 @@ public class OrderBasketController {
 
     @FXML
     public void setLoadBasket(){
-        loadBasketButton.disableProperty().set(true);
         ObservableList<BasketItem> fullBasket = mainController.getFullBasket();
         if(fullBasket.isEmpty()){
             basketListView.setItems(FXCollections.observableArrayList(new BasketItem()));
@@ -103,6 +102,14 @@ public class OrderBasketController {
     @FXML
     public void placeOrder(){
         createOrder();
+        basketListView.setItems(FXCollections.observableArrayList(new BasketItem(BasketItem.ORDERPLACED)));
+        placeOrderButton.disableProperty().set(true);
+        removeButton.disableProperty().set(true);
+        basketListView.disableProperty().set(true);
+        subTotal.setText("$0.00");
+        total.setText("$0.00");
+        tax.setText("$0.00");
+        loadBasketButton.disableProperty().set(false);
     }
 
     private void createOrder(){
@@ -114,13 +121,6 @@ public class OrderBasketController {
         ObservableList<Order> listOfOrders = mainController.getListOfOrders();
         listOfOrders.add(order);
         fullBasket.clear();
-        basketListView.setItems(FXCollections.observableArrayList(new BasketItem(BasketItem.ORDERPLACED)));
-        placeOrderButton.disableProperty().set(true);
-        removeButton.disableProperty().set(true);
-        basketListView.disableProperty().set(true);
-        subTotal.setText("$0.00");
-        total.setText("$0.00");
-        tax.setText("$0.00");
     }
 
     private int generateOrderNumber(){
@@ -129,6 +129,7 @@ public class OrderBasketController {
         while(true){
             if(!orderNumbers.contains(randomNum)){
                 orderNumbers.add(randomNum);
+                System.out.println("Active Order Numbers: "+orderNumbers);
                 return randomNum;
             }
         }

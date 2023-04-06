@@ -123,7 +123,6 @@ public class OrderDonutsController {
 
     @FXML
     public void setInitialBasket(){
-        loadPreviousBasket.disableProperty().set(true);
         donutType.disableProperty().set(false);
         ObservableList<BasketItem> basketItems = mainController.getDonutBasketItems();
         basketItemsListView.setItems(basketItems);

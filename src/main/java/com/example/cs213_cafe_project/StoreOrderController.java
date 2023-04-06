@@ -28,7 +28,7 @@ public class StoreOrderController {
     }
 
     @FXML
-    private ComboBox orderNumberList;
+    private ComboBox<String> orderNumberList;
     @FXML
     private Button cancelButton;
     @FXML
@@ -46,9 +46,9 @@ public class StoreOrderController {
             orderNumberList.disableProperty().set(true);
             return;
         }
-        ObservableList<Integer> orderNumbers = FXCollections.observableArrayList();
+        ObservableList<String> orderNumbers = FXCollections.observableArrayList("Orders (Order Number):");
         for(Integer integer : set){
-            orderNumbers.add(integer);
+            orderNumbers.add(Integer.toString(integer));
         }
         orderNumberList.setItems(orderNumbers);
     }
@@ -57,8 +57,11 @@ public class StoreOrderController {
     public void selectedOrder(){
         int selectedOrderNumber;
         try{
-            selectedOrderNumber = (int) orderNumberList.valueProperty().getValue();
+            selectedOrderNumber = Integer.parseInt(orderNumberList.valueProperty().getValue());
         }catch (Exception e){
+            orderListView.setItems(null);
+            orderTotal.setText("");
+            cancelButton.disableProperty().set(true);
             return;
         }
         ObservableList<Order> listOfOrders = mainController.getListOfOrders();
@@ -72,5 +75,30 @@ public class StoreOrderController {
                 i = listOfOrders.size();
             }
         }
+    }
+
+    @FXML
+    public void cancelSelectedOrder(){
+        ObservableList<Order> listOfOrders = mainController.getListOfOrders();
+        int selectedOrderNumber;
+        try{
+            selectedOrderNumber = Integer.parseInt(orderNumberList.valueProperty().getValue());
+        }catch (Exception e){
+            return;
+        }
+        for(int i =0;i<listOfOrders.size();i++){
+            if(listOfOrders.get(i).getOrderNumber() == selectedOrderNumber){
+                listOfOrders.remove(i);
+                i = listOfOrders.size();
+            }
+        }
+        HashSet<Integer> set = mainController.getOrderNumbers();
+        set.remove(selectedOrderNumber);
+        orderTotal.setText("");
+        orderTotal.focusTraversableProperty().set(false);
+        orderNumberList.setValue("Orders (Order Number):");
+        cancelButton.disableProperty().set(true);
+        orderListView.setItems(null);
+        System.out.println(set);
     }
 }
