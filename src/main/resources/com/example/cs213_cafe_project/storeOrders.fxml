@@ -64,7 +64,7 @@
         </rowConstraints>
          <children>
             <Button fx:id="cancelButton" mnemonicParsing="false" text="Cancel Order" GridPane.halignment="CENTER" GridPane.rowIndex="1" onAction="#cancelSelectedOrder"/>
-            <Button fx:id="exportButton" mnemonicParsing="false" text="Export Orders" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            <Button fx:id="exportButton" mnemonicParsing="false" text="Export Orders" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" onAction="#exportClicked"/>
          </children>
       </GridPane>
    </bottom>

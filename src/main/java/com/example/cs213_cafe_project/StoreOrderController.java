@@ -1,6 +1,8 @@
 package com.example.cs213_cafe_project;
 
+import com.example.cs213_cafe_project.data.FileCreate;
 import com.example.cs213_cafe_project.data.Order;
+import com.example.cs213_cafe_project.donut.YeastDonut;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -37,6 +39,17 @@ public class StoreOrderController {
     private TextField orderTotal;
     @FXML
     private ListView<Order> orderListView;
+
+    @FXML
+    public void exportClicked(){
+        ObservableList<Order> listOfOrders = mainController.getListOfOrders();
+        if(listOfOrders.isEmpty()){
+            new FileCreate().createEmptyFile();
+            orderListView.setItems(FXCollections.observableArrayList(new Order(Order.EMPTYFILE)));
+        }else{
+
+        }
+    }
 
     @FXML
     public void makeList(){

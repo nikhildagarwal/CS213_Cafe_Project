@@ -28,6 +28,11 @@ public class Order {
     public static final int EMPTY = 1;
 
     /**
+     * To indicate that there are no orders and the file has been created.
+     */
+    public static final int EMPTYFILE = -1;
+
+    /**
      * integer order number
      */
     private int orderNumber;
@@ -94,6 +99,9 @@ public class Order {
      */
     @Override
     public String toString(){
+        if(orderNumber == EMPTYFILE){
+            return "Order Summary Created.\nFilename: orderSummary.txt";
+        }
         if(orderNumber == EMPTY){
             return "No Orders Yet";
         }
