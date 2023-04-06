@@ -69,7 +69,7 @@ public class StoreOrderController {
             if(currOrder.getOrderNumber() == selectedOrderNumber){
                 orderListView.setItems(FXCollections.observableArrayList(currOrder));
                 cancelButton.disableProperty().set(false);
-                orderTotal.setText(currOrder.getOrderPrice());
+                orderTotal.setText("$"+currOrder.getOrderPrice());
                 orderTotal.disableProperty().set(false);
                 i = listOfOrders.size();
             }
@@ -93,6 +93,11 @@ public class StoreOrderController {
         }
         HashSet<Integer> set = mainController.getOrderNumbers();
         set.remove(selectedOrderNumber);
+        ObservableList<String> orderNumbers = FXCollections.observableArrayList("Orders (Order Number):");
+        for(Integer integer : set){
+            orderNumbers.add(Integer.toString(integer));
+        }
+        orderNumberList.setItems(orderNumbers);
         orderTotal.setText("");
         orderTotal.focusTraversableProperty().set(false);
         orderNumberList.setValue("Orders (Order Number):");

@@ -4,6 +4,7 @@ import com.example.cs213_cafe_project.data.BasketItem;
 import com.example.cs213_cafe_project.data.MenuItem;
 import com.example.cs213_cafe_project.data.Order;
 import com.example.cs213_cafe_project.donut.YeastDonut;
+import com.example.cs213_cafe_project.donut.flavors.YeastFlavor;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -52,7 +53,6 @@ public class OrderBasketController {
         total.disableProperty().set(true);
         removeButton.disableProperty().set(true);
         placeOrderButton.disableProperty().set(true);
-        basketListView.disableProperty().set(true);
     }
 
     @FXML
@@ -70,7 +70,6 @@ public class OrderBasketController {
             total.focusTraversableProperty().set(false);
             placeOrderButton.disableProperty().set(false);
             placeOrderButton.focusTraversableProperty().set(false);
-            basketListView.disableProperty().set(false);
             setBasketPrice(fullBasket);
         }
     }
@@ -95,24 +94,22 @@ public class OrderBasketController {
             basketListView.setItems(FXCollections.observableArrayList(new BasketItem()));
             placeOrderButton.disableProperty().set(true);
             removeButton.disableProperty().set(true);
-            basketListView.disableProperty().set(true);
         }
     }
 
     @FXML
     public void placeOrder(){
-        createOrder();
-        basketListView.setItems(FXCollections.observableArrayList(new BasketItem(BasketItem.ORDERPLACED)));
+        int orderNumber = createOrder();
+        basketListView.setItems(FXCollections.observableArrayList(new BasketItem(new YeastDonut(YeastFlavor.TEST), orderNumber) ));
         placeOrderButton.disableProperty().set(true);
         removeButton.disableProperty().set(true);
-        basketListView.disableProperty().set(true);
         subTotal.setText("$0.00");
         total.setText("$0.00");
         tax.setText("$0.00");
         loadBasketButton.disableProperty().set(false);
     }
 
-    private void createOrder(){
+    private int createOrder(){
         ObservableList<BasketItem> fullBasket = mainController.getFullBasket();
         ArrayList<BasketItem> orderList = new ArrayList<>();
         createOrderList(orderList,fullBasket);
@@ -121,6 +118,7 @@ public class OrderBasketController {
         ObservableList<Order> listOfOrders = mainController.getListOfOrders();
         listOfOrders.add(order);
         fullBasket.clear();
+        return orderNumber;
     }
 
     private int generateOrderNumber(){

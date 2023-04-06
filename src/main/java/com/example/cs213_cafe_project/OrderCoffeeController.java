@@ -106,6 +106,9 @@ public class OrderCoffeeController {
         enableCheckBoxes();
         enableAmountBox();
         Size size = getSizeFromString(coffeeSize.valueProperty().getValue());
+        if(size==null){
+            return;
+        }
         String amount = numCoffee.valueProperty().getValue();
         if(amount == null || amount.equals("Amount:")){
             return;
@@ -122,6 +125,9 @@ public class OrderCoffeeController {
     public void setCoffeePriceInitial(){
         enableAmountBox();
         Size size = getSizeFromString(coffeeSize.valueProperty().getValue());
+        if(size==null){
+            return;
+        }
         String amount = numCoffee.valueProperty().getValue();
         if(amount == null || amount.equals("Amount:")){
             return;

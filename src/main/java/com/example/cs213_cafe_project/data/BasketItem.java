@@ -1,5 +1,8 @@
 package com.example.cs213_cafe_project.data;
 
+import com.example.cs213_cafe_project.donut.YeastDonut;
+import com.example.cs213_cafe_project.donut.flavors.YeastFlavor;
+
 public class BasketItem {
     private MenuItem menuItem;
     private int quantity;
@@ -39,8 +42,8 @@ public class BasketItem {
         if(menuItem == null && quantity == DONUTVIEW){
             return "Basket is Empty!";
         }
-        if(menuItem == null && quantity == ORDERPLACED){
-            return "Order Placed!";
+        if(menuItem.equals(new YeastDonut(YeastFlavor.TEST))){
+            return "Order Placed!\nOrder Number: "+quantity;
         }
         return quantity+ " x " + menuItem.toString();
     }

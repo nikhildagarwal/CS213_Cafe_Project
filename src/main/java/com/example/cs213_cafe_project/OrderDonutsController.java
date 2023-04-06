@@ -89,7 +89,6 @@ public class OrderDonutsController {
         }
         reset();
         setSelectionPrice();
-        donutFlavorType.disableProperty().set(true);
     }
 
     @FXML
@@ -165,6 +164,9 @@ public class OrderDonutsController {
         basketItemsListView.disableProperty().set(false);
         ObservableList<BasketItem> basketItems = mainController.getDonutBasketItems();
         String dType = donutType.valueProperty().getValue();
+        if(dType.equals("Choose Donut:")){
+            return;
+        }
         int quantity = Integer.parseInt(numDonuts.valueProperty().getValue());
         String dfType = donutFlavorType.getSelectionModel().getSelectedItem();
         switch(dType){
@@ -206,6 +208,9 @@ public class OrderDonutsController {
     public void setSelectionPrice(){
         donutFlavorType.disableProperty().set(false);
         String dType = donutType.valueProperty().getValue();
+        if(dType.equals("Choose Donut:")){
+            return;
+        }
         enableAmountBox();
         String amount = numDonuts.valueProperty().getValue();
         if(amount==null || amount.equals("Amount:")){
@@ -220,7 +225,6 @@ public class OrderDonutsController {
         priceByType(dType,quantity,dfType);
     }
 
-    @FXML
     private void priceByType(String donutType, double quantity, String donutFlavorType){
         switch(donutType){
             case "Yeast Donuts":

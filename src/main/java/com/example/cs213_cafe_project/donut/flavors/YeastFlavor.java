@@ -38,7 +38,12 @@ public enum YeastFlavor {
     /**
      * Powdered Sugar yeast donut
      */
-    SUGAR("Powdered Sugar");
+    SUGAR("Powdered Sugar"),
+
+    /**
+     * Test Flavor
+     */
+    TEST("test");
 
     /**
      * String description of the flavor
