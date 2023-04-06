@@ -49,8 +49,4 @@ public class FileCreate {
         }
     }
 
-    public static void main(String[] args){
-        new FileCreate().createEmptyFile();
-    }
-
 }

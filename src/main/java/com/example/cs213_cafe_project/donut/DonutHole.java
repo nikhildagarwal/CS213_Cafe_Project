@@ -88,14 +88,4 @@ public class DonutHole extends MenuItem {
         }
         return false;
     }
-
-    public static void main(String[] args){
-        DonutHole d1 = new DonutHole();
-        DonutHole d2 = new DonutHole(HoleFlavor.JELLY);
-        DonutHole d3 = new DonutHole(HoleFlavor.JELLY);
-        System.out.println(d1);
-        System.out.println(d2.equals(d3));
-        System.out.println(d2.equals(d1));
-        System.out.println(d1.itemPrice());
-    }
 }

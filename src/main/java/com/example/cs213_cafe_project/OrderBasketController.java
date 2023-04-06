@@ -127,7 +127,6 @@ public class OrderBasketController {
         while(true){
             if(!orderNumbers.contains(randomNum)){
                 orderNumbers.add(randomNum);
-                System.out.println("Active Order Numbers: "+orderNumbers);
                 return randomNum;
             }
         }

@@ -100,21 +100,4 @@ public class Coffee extends MenuItem {
         }
         return false;
     }
-
-    public static void main (String[] args){
-        HashSet<AddOn> l1 = new HashSet<>();
-        l1.add(AddOn.CARAMEL);
-        l1.add(AddOn.FRENCHVANILLA);
-        l1.add(AddOn.MOCHA);
-        Coffee c1 = new Coffee(Size.TALL,l1);
-        System.out.println(c1);
-        System.out.println(c1.itemPrice());
-
-        HashSet<AddOn> l2 = new HashSet<>();
-        l2.add(AddOn.CARAMEL);
-        l2.add(AddOn.FRENCHVANILLA);
-        l2.add(AddOn.MOCHA);
-        Coffee c2 = new Coffee(Size.TALL,l2);
-        System.out.println(c1.equals(c2));
-    }
 }

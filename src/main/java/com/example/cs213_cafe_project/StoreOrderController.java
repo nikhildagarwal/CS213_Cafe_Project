@@ -117,6 +117,5 @@ public class StoreOrderController {
         orderNumberList.setValue("Orders (Order Number):");
         cancelButton.disableProperty().set(true);
         orderListView.setItems(null);
-        System.out.println(set);
     }
 }

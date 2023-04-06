@@ -88,11 +88,4 @@ public class YeastDonut extends MenuItem {
         }
         return false;
     }
-
-    public static void main (String[] args){
-        YeastDonut y1 = new YeastDonut(YeastFlavor.CINNAMON);
-        YeastDonut y2 = new YeastDonut(YeastFlavor.CINNAMON);
-        System.out.println(y1.equals(y2));
-        System.out.println(y2.itemPrice());
-    }
 }

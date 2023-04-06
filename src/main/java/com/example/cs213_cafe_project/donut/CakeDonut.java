@@ -88,14 +88,4 @@ public class CakeDonut extends MenuItem {
         }
         return false;
     }
-
-    public static void main(String[] args){
-        CakeDonut c1 = new CakeDonut(CakeFlavor.STRAWBERRY);
-        CakeDonut c2 = new CakeDonut(CakeFlavor.STRAWBERRY);
-        System.out.println(c1);
-        System.out.println(c2);
-        System.out.println(c1.equals(c2));
-        System.out.println(c1.itemPrice());
-    }
-
 }
