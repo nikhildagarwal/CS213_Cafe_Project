@@ -47,7 +47,8 @@ public class StoreOrderController {
             new FileCreate().createEmptyFile();
             orderListView.setItems(FXCollections.observableArrayList(new Order(Order.EMPTYFILE)));
         }else{
-
+            new FileCreate().createFilledFile(listOfOrders);
+            orderListView.setItems(FXCollections.observableArrayList(new Order(Order.EMPTYFILE)));
         }
     }
 

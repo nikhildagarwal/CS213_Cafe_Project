@@ -100,7 +100,7 @@ public class Order {
     @Override
     public String toString(){
         if(orderNumber == EMPTYFILE){
-            return "Order Summary Created.\nFilename: orderSummary.txt";
+            return "Order Summary Created.\nFilename: orderSummary.txt\nPlease close all tabs to view this file.";
         }
         if(orderNumber == EMPTY){
             return "No Orders Yet";
