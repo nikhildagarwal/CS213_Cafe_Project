@@ -33,9 +33,9 @@ public class OrderCoffeeController {
     }
 
     public void initialize() {
-        coffeeSizeList = FXCollections.observableArrayList( "Short", "Tall","Grande", "Venti");
+        coffeeSizeList = FXCollections.observableArrayList( "Size:","Short", "Tall","Grande", "Venti");
         coffeeSize.setItems(coffeeSizeList);
-        coffeeAmount = FXCollections.observableArrayList("1","2","3","4","5");
+        coffeeAmount = FXCollections.observableArrayList("Amount:","1","2","3","4","5");
         numCoffee.setItems(coffeeAmount);
         coffeePrice.setText("$0.00");
         coffeePrice.focusTraversableProperty().set(false);
@@ -59,6 +59,9 @@ public class OrderCoffeeController {
     @FXML
     public void addCoffeeToOrderClicked(){
         Size size = getSizeFromString(coffeeSize.valueProperty().getValue());
+        if(size == null){
+            return;
+        }
         String amount = numCoffee.valueProperty().getValue();
         int quantity = Integer.parseInt(amount);
         HashSet<AddOn> addOnList = new HashSet<>();
@@ -74,7 +77,8 @@ public class OrderCoffeeController {
         addCoffeeToOrder.disableProperty().set(true);
         coffeePrice.setText("$0.00");
         coffeePrice.focusTraversableProperty().set(false);
-        numCoffee.setPromptText("Amount:");
+        numCoffee.setValue("Amount:");
+        coffeeSize.setValue("Size:");
         numCoffee.disableProperty().set(true);
         disableCheckBoxes();
         unselectCheckBoxes();
@@ -103,7 +107,23 @@ public class OrderCoffeeController {
         enableAmountBox();
         Size size = getSizeFromString(coffeeSize.valueProperty().getValue());
         String amount = numCoffee.valueProperty().getValue();
-        if(amount == null){
+        if(amount == null || amount.equals("Amount:")){
+            return;
+        }
+        enableSubmitBox();
+        double quantity = Double.parseDouble(amount);
+        HashSet<AddOn> addOnList = new HashSet<>();
+        fillSet(addOnList, sweetCreamAddOn.isSelected(), mochaAddOn.isSelected(), frenchVanillaAddOn.isSelected(), caramelAddOn.isSelected(), irishCreamAddOn.isSelected());
+        Coffee myCoffee = new Coffee(size,addOnList);
+        coffeePrice.setText("$"+Math.round(myCoffee.itemPrice() * quantity * 100.0) / 100.0);
+    }
+
+    @FXML
+    public void setCoffeePriceInitial(){
+        enableAmountBox();
+        Size size = getSizeFromString(coffeeSize.valueProperty().getValue());
+        String amount = numCoffee.valueProperty().getValue();
+        if(amount == null || amount.equals("Amount:")){
             return;
         }
         enableSubmitBox();

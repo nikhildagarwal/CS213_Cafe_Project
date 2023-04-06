@@ -52,9 +52,9 @@ public class OrderDonutsController {
     }
 
     public void initialize() {
-        donutList = FXCollections.observableArrayList("Yeast Donuts", "Cake Donuts", "Donut Holes");
+        donutList = FXCollections.observableArrayList("Choose Donut:","Yeast Donuts", "Cake Donuts", "Donut Holes");
         donutType.setItems(donutList);
-        donutAmount = FXCollections.observableArrayList("1","2","3","4","5","6","7","8","9","10","11","12");
+        donutAmount = FXCollections.observableArrayList("Amount:","1","2","3","4","5","6","7","8","9","10","11","12");
         numDonuts.setItems(donutAmount);
         selectionTotal.setText("$0.00");
         selectionTotal.focusTraversableProperty().set(false);
@@ -69,6 +69,9 @@ public class OrderDonutsController {
     @FXML
     public void displaySelected(ActionEvent event) {
         String selected = donutType.getSelectionModel().getSelectedItem();
+        if(selected == null || selected.equals("Choose Donut:")){
+            return;
+        }
         if(selected.equals("Cake Donuts")) {
             donutFlavorList = FXCollections.observableArrayList("Plain Vanilla", "Chocolate Cake", "Strawberry Short-Cake");
             donutFlavorType.setItems(donutFlavorList);
@@ -86,6 +89,7 @@ public class OrderDonutsController {
         }
         reset();
         setSelectionPrice();
+        donutFlavorType.disableProperty().set(true);
     }
 
     @FXML
@@ -158,7 +162,7 @@ public class OrderDonutsController {
     }
 
     @FXML
-    public void addToBasket(){
+    public void addToBasket() throws Exception {
         basketItemsListView.disableProperty().set(false);
         ObservableList<BasketItem> basketItems = mainController.getDonutBasketItems();
         String dType = donutType.valueProperty().getValue();
@@ -185,10 +189,18 @@ public class OrderDonutsController {
                 break;
         }
         reset();
-        donutType.setValue("Yeast Donuts");
         basketItemsListView.setItems(basketItems);
         setBasketPrice();
         addToOrderButton.disableProperty().set(false);
+        resetComboBoxValue(donutType);
+        resetComboBoxValue(numDonuts);
+        numDonuts.disableProperty().set(true);
+        donutFlavorType.disableProperty().set(true);
+    }
+
+    private void resetComboBoxValue(ComboBox<String> comboBox){
+        String value = comboBox.getPromptText();
+        comboBox.setValue(value);
     }
 
     @FXML
@@ -197,7 +209,7 @@ public class OrderDonutsController {
         String dType = donutType.valueProperty().getValue();
         enableAmountBox();
         String amount = numDonuts.valueProperty().getValue();
-        if(amount==null){
+        if(amount==null || amount.equals("Amount:")){
             return;
         }
         double quantity = Double.parseDouble(amount);
