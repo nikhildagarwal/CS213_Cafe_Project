@@ -43,7 +43,6 @@ public class StoreOrderController {
         HashSet<Integer> set = mainController.getOrderNumbers();
         if(set.isEmpty()){
             orderListView.setItems(FXCollections.observableArrayList(new Order(Order.EMPTY)));
-            orderNumberList.disableProperty().set(true);
             return;
         }
         ObservableList<String> orderNumbers = FXCollections.observableArrayList("Orders (Order Number):");
