@@ -1,3 +1,6 @@
+/**
+ * Project package
+ */
 package com.example.cs213_cafe_project;
 
 import com.example.cs213_cafe_project.data.BasketItem;
@@ -8,38 +11,69 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
-import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
-import java.text.RuleBasedCollator;
 import java.util.HashSet;
 
+/**
+ * This class is the controller for StoreFrontView.fxml
+ * Creates and sets the stages for all the other views in RUCafe Project
+ * Contains all the universal data objects that are needed to successfully run the project.
+ * @author Hyeon Oh, Nikhil Agarwal
+ */
 public class MainController {
 
+    /**
+     * data storage for Donut Basket Items
+     */
     private ObservableList<BasketItem> donutBasketItems = FXCollections.observableArrayList();
+
+    /**
+     * data storage for All basket items
+     */
     private ObservableList<BasketItem> fullBasket = FXCollections.observableArrayList();
+
+    /**
+     * data storage for list of all orders
+     */
     private ObservableList<Order> listOfOrders = FXCollections.observableArrayList();
+
+    /**
+     * data storage for set of all active orderNumbers
+     */
     private HashSet<Integer> orderNumbers = new HashSet<>();
 
+    /**
+     * getter method for reference of data in listOfOrders
+     * @return ObservableList<Order> listOfOrders
+     */
     public ObservableList<Order> getListOfOrders(){
         return listOfOrders;
     }
 
+    /**
+     * getter method for reference of data in orderNumbers
+     * @return HashSet<Integer> orderNumbers
+     */
     public HashSet<Integer> getOrderNumbers(){
         return orderNumbers;
     }
 
+    /**
+     * getter method for reference of data in donutBasketItems
+     * @return ObservableList<BasketItem> donutBasketItems
+     */
     public ObservableList<BasketItem> getDonutBasketItems(){
         return donutBasketItems;
     }
 
+    /**
+     * getter method for reference of data in fullBasket
+     * @return ObservableList<BasketItem> fullBasket
+     */
     public ObservableList<BasketItem> getFullBasket(){
         return fullBasket;
     }
-
-
 
     /**
      * When the image button is clicked, a new window(stage) will be displayed.
@@ -53,7 +87,6 @@ public class MainController {
         Stage coffeeView = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffee.fxml"));
-
             Scene scene = new Scene(loader.load(), 600, 600);
             coffeeView.setScene(scene);
             coffeeView.show();
@@ -68,6 +101,13 @@ public class MainController {
         }
     }
 
+    /**
+     * When the image button is clicked, a new window(stage) will be displayed.
+     * The scene graph associated with the window is donutsView.fxml
+     * When the fxml file is loading, an instance of OrderDonutsController will be created
+     * To get the reference to the instance of the controller, use the getController()
+     * method.
+     */
     @FXML
     protected void displayDonutView() {
         Stage donutView = new Stage();
@@ -87,6 +127,13 @@ public class MainController {
         }
     }
 
+    /**
+     * When the image button is clicked, a new window(stage) will be displayed.
+     * The scene graph associated with the window is orderBasket.fxml
+     * When the fxml file is loading, an instance of OrderBasketController will be created
+     * To get the reference to the instance of the controller, use the getController()
+     * method.
+     */
     @FXML
     protected void displayBasketView() {
         Stage basketView = new Stage();
@@ -106,6 +153,13 @@ public class MainController {
         }
     }
 
+    /**
+     * When the image button is clicked, a new window(stage) will be displayed.
+     * The scene graph associated with the window is storeOrders.fxml
+     * When the fxml file is loading, an instance of StoreOrderController will be created
+     * To get the reference to the instance of the controller, use the getController()
+     * method.
+     */
     @FXML
     protected void displayStoreView() {
         Stage storeOrderView = new Stage();
