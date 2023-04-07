@@ -1,18 +1,9 @@
 /**
- * master package for all java files
+ * Package for all data java files (structures)
  */
 package com.example.cs213_cafe_project.data;
 
-import com.example.cs213_cafe_project.cofee.AddOn;
-import com.example.cs213_cafe_project.cofee.Coffee;
-import com.example.cs213_cafe_project.cofee.Size;
-import com.example.cs213_cafe_project.donut.CakeDonut;
-import com.example.cs213_cafe_project.donut.flavors.CakeFlavor;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
 
 /**
  * Implementation for orders in our project.
@@ -38,8 +29,8 @@ public class Order {
     private int orderNumber;
 
     /**
-     * HashSet orderList
-     * Contains only unique basket items.
+     * ArrayList of basketItems
+     * Contains all basket items (does not have to be unique).
      */
     private ArrayList<BasketItem> orderList;
 

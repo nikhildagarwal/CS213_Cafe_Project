@@ -45,8 +45,6 @@ public class OrderDonutsController {
     @FXML
     private ListView<BasketItem> basketItemsListView;
 
-
-    //Get the reference to the MainController object
     public void setMainController (MainController controller){
         mainController = controller;
     }
@@ -64,12 +62,13 @@ public class OrderDonutsController {
         basketTotal.focusTraversableProperty().set(false);
     }
 
-    //donutFlavorList = FXCollections.observableArrayList("test", "test2");
-    //donutFlavorType.setItems(donutFlavorList);
     @FXML
     public void displaySelected(ActionEvent event) {
         String selected = donutType.getSelectionModel().getSelectedItem();
         if(selected == null || selected.equals("Choose Donut:")){
+            if(selected.equals("Choose Donut:")){
+                donutImage.setImage(null);
+            }
             return;
         }
         if(selected.equals("Cake Donuts")) {

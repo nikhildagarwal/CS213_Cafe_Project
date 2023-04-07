@@ -44,7 +44,7 @@ public enum AddOn {
      * Constructor for enum Object
      * Cannot be instantiated outside of this class.
      * Must init object above to use outside of class.
-     * @param addition
+     * @param addition the string description of our addition.
      */
     AddOn(String addition){
         this.addition = addition;

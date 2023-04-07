@@ -57,13 +57,14 @@
          </children>
       </VBox>
    </left>
+
    <right>
       <VBox prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <BorderPane.margin>
             <Insets right="15.0" top="25.0" />
          </BorderPane.margin>
          <children>
-            <ImageView fx:id="donutImage" fitHeight="1.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
+            <ImageView fx:id="donutImage" fitHeight="200.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true" />
             <Label prefHeight="17.0" prefWidth="188.0" text="Donut Basket Sub-Total:" />
             <TextField fx:id="basketTotal" editable="false" prefHeight="25.0" prefWidth="194.0">
                <VBox.margin>

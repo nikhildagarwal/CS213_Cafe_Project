@@ -1,5 +1,5 @@
 /**
- * master package for all java files
+ * Package for all data java files (structures)
  */
 package com.example.cs213_cafe_project.data;
 
@@ -16,5 +16,12 @@ public abstract class MenuItem{
      */
     public abstract double itemPrice();
 
+    /**
+     * This method is implemented in each class that extends the MenuItem abstract class
+     * Overrides the equal() method in Java Object class
+     * @param obj Object that we want to type cast and compare
+     * @return true if the objects equal each other.
+     */
+    @Override
     public abstract boolean equals(Object obj);
 }
