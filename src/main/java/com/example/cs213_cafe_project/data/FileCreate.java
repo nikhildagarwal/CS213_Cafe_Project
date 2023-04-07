@@ -42,9 +42,10 @@ public class FileCreate {
 
     /**
      * Calls createFile to create a text file and then writes the following message to the file:
-     *      Order Summary:
-     *      ~~ ALL ORDER DATA ~~
-     *      Have a nice day!
+     *      *      Order Summary:
+     *      *      ~~ ALL ORDER DATA ~~
+     *      *      Have a nice day!
+     * @param orders list of orders
      */
     public void createFilledFile(ObservableList<Order> orders){
         createFile();

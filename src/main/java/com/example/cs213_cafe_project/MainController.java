@@ -83,7 +83,7 @@ public class MainController {
      * method.
      */
     @FXML
-    protected void displayCoffeeView() {
+    public void displayCoffeeView() {
         Stage coffeeView = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderingCoffee.fxml"));
@@ -109,7 +109,7 @@ public class MainController {
      * method.
      */
     @FXML
-    protected void displayDonutView() {
+    public void displayDonutView() {
         Stage donutView = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("donutsView.fxml"));
@@ -135,7 +135,7 @@ public class MainController {
      * method.
      */
     @FXML
-    protected void displayBasketView() {
+    public void displayBasketView() {
         Stage basketView = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("orderBasket.fxml"));
@@ -161,7 +161,7 @@ public class MainController {
      * method.
      */
     @FXML
-    protected void displayStoreView() {
+    public void displayStoreView() {
         Stage storeOrderView = new Stage();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("storeOrders.fxml"));
